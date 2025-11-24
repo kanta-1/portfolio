@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio | Kunii</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- CSS Variables & Reset --- */
+        :root {
+            --primary: #0056b3;       /* 知的な濃い青 */
+            --accent: #e7f1ff;        /* 非常に薄い青（背景用） */
+            --text-main: #333333;     /* 本文色 */
+            --text-light: #666666;    /* サブテキスト */
+            --white: #ffffff;
+            --bg-gray: #f9f9f9;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            --radius: 8px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            color: var(--text-main);
+            background-color: var(--bg-gray);
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* --- Header --- */
+        header {
+            background-color: var(--white);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 0.05em;
+        }
+
+        .logo i { margin-right: 8px; }
+
+        /* --- Common Layout --- */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--primary);
+            font-weight: 700;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: var(--primary);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        /* --- Hero / Profile Section --- */
+        .profile-section {
+            background: linear-gradient(135deg, var(--white) 0%, var(--accent) 100%);
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .profile-icon {
+            width: 120px;
+            height: 120px;
+            background-color: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            margin: 0 auto 20px;
+            box-shadow: 0 10px 20px rgba(0, 86, 179, 0.2);
+        }
+
+        .profile-name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .profile-univ {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            display: inline-block;
+            background: var(--white);
+            padding: 5px 20px;
+            border-radius: 50px;
+            border: 1px solid #ddd;
+        }
+
+        .profile-univ i { color: var(--primary); margin-right: 8px; }
+
+        /* --- Gakuchika Section --- */
+        .gakuchika-card {
+            background-color: var(--white);
+            border-radius: var(--radius);
+            padding: 40px;
+            box-shadow: var(--shadow);
+            border-top: 5px solid var(--primary);
+        }
+
+        .gakuchika-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .gakuchika-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-right: 20px;
+            background: var(--accent);
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+        }
+
+        .gakuchika-title h3 {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+
+        .gakuchika-title span {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        /* Story Layout */
+        .story-block {
+            margin-bottom: 25px;
+        }
+
+        .story-label {
+            display: inline-block;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--white);
+            padding: 4px 12px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+
+        .bg-red { background-color: #e74c3c; }    /* 課題 */
+        .bg-blue { background-color: #3498db; }   /* 行動 */
+        .bg-green { background-color: #27ae60; }  /* 結果 */
+
+        .story-text {
+            text-align: justify;
+            margin-bottom: 15px;
+        }
+
+        /* Result Highlight Box */
+        .result-box {
+            background-color: var(--accent);
+            padding: 20px;
+            border-radius: var(--radius);
+            border-left: 4px solid var(--primary);
+            margin-top: 30px;
+        }
+
+        .result-box h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .result-box h4 i { margin-right: 10px; }
+
+        .result-highlight {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--primary);
+            color: var(--white);
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .section-title { font-size: 1.5rem; }
+            .profile-name { font-size: 2rem; }
+            .gakuchika-card { padding: 25px; }
+            .gakuchika-header { flex-direction: column; text-align: center; }
+            .gakuchika-icon { margin-right: 0; margin-bottom: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo"><i class="fa-solid fa-code"></i> My Portfolio</div>
+    </header>
+
+    <main>
+        <section id="profile" class="profile-section">
+            <div class="container">
+                <div class="profile-icon">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <h1 class="profile-name">國井</h1>
+                <div class="profile-univ">
+                    <i class="fa-solid fa-graduation-cap"></i> 日本大学 理工学部
+                </div>
+            </div>
+        </section>
+
+        <section id="gakuchika">
+            <div class="container">
+                <h2 class="section-title">Student Era Achievement</h2>
+                
+                <div class="gakuchika-card">
+                    <div class="gakuchika-header">
+                        <div class="gakuchika-icon">
+                            <i class="fa-solid fa-stopwatch"></i>
+                        </div>
+                        <div class="gakuchika-title">
+                            <h3>体育祭実行委員としての運営改革</h3>
+                            <span>Leadership & Process Improvement</span>
+                        </div>
+                    </div>
+
+                    <div class="story-block">
+                        <span class="story-label bg-red">課題：大幅な遅延</span>
+                        <p class="story-text">
+                            高校時代、体育祭実行委員として運営の円滑化に取り組みました。私が1年目に携わった際、準備や連携の不足から、当日のプログラムが<strong>40分以上も遅延する大きな課題</strong>がありました。この経験から、翌年は「時間厳守」を最大の目標に掲げました。
+                        </p>
+                    </div>
+
+                    <div class="story-block">
+                        <span class="story-label bg-blue">行動：連携の強化</span>
+                        <p class="story-text">
+                            遅延の原因だった「連携不足」を解消するため、2つの施策を実行しました。<br>
+                            第一に、週1回の定例会で<strong>「報・連・相」を徹底するルール</strong>を設けました。<br>
+                            第二に、活動外でもSNSグループで細かく進捗を共有し、進行担当の委員みんなが常に全体の状況を把握できるように働きかけました。
+                        </p>
+                    </div>
+
+                    <div class="result-box">
+                        <h4><i class="fa-solid fa-trophy"></i> 結果と学び</h4>
+                        <p class="story-text">
+                            結果、準備段階での見落としがなくなり、当日は40分の遅れを解消するだけでなく、全プログラムを<span class="result-highlight">予定より15分前倒しで完了</span>できました。<br>
+                            この経験から、目標達成には緻密な情報共有と事前の準備がいかに重要かを学びました。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Kunii. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
